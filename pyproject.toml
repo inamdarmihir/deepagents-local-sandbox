@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "deepagents-local-sandbox"
+version = "0.1.0"
+description = "Free, isolated local sandbox backends for the deepagents SDK (Docker + Bubblewrap)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "deepagents>=0.5",
+    "docker>=7.0",
+]
+
+[project.optional-dependencies]
+# Model providers — install whichever you use
+anthropic = ["langchain-anthropic>=0.3"]
+openai    = ["langchain-openai>=0.3"]
+ollama    = ["langchain-ollama>=0.3"]
+# Convenience: all providers at once
+all-providers = [
+    "langchain-anthropic>=0.3",
+    "langchain-openai>=0.3",
+    "langchain-ollama>=0.3",
+]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["deepagents_local_sandbox"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
