@@ -1,0 +1,16 @@
+# Subagent definitions for the Code Runner Agent
+# Loaded and wired up by code_runner.py
+
+debugger:
+  description: >
+    Use this subagent when you need a second opinion on a failing script or a
+    complex algorithm. Describe the problem and share the code + error output.
+    It will suggest a fix or an alternative approach.
+  model: anthropic:claude-haiku-4-5-20251001
+  system_prompt: |
+    You are an expert Python debugger. When given code and an error message:
+    1. Identify the root cause
+    2. Propose a minimal fix
+    3. Explain why the fix works in one or two sentences
+    Keep your response concise — bullet points are preferred.
+  tools: []
